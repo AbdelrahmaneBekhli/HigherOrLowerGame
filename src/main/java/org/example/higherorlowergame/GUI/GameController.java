@@ -1,11 +1,14 @@
 package org.example.higherorlowergame.GUI;
 
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 import org.example.higherorlowergame.Card;
 import org.example.higherorlowergame.Deck;
 
@@ -45,6 +48,9 @@ public class GameController implements Initializable {
     private Card currentCard;
     private Card nextCard;
 
+    private int elapsedTime = 0; // Elapsed time in seconds
+    private Timeline timer; // Timer for updating the game time
+
     /**
      * initialize the screen to default values.
      */
@@ -60,6 +66,47 @@ public class GameController implements Initializable {
         nextCard = deck.getNextCard();
 
         previousCardImg.setImage(null);
+
+        startTimer();
+    }
+
+    /**
+     * starts the game timer.
+     */
+    private void startTimer() {
+        timer = new Timeline(new KeyFrame(Duration.seconds(1), e -> updateTimer()));
+        timer.setCycleCount(Timeline.INDEFINITE); // Run indefinitely
+        timer.play(); // Start the timer
+    }
+
+    /**
+     * updates the timer display.
+     */
+    private void updateTimer() {
+        elapsedTime++;
+        gameTimer.setText("Time: " + formatTime(elapsedTime)); // update timer text with "Time: " prefix
+    }
+
+    /**
+     * formats the elapsed time as HH:MM:SS.
+     *
+     * @param seconds total seconds elapsed.
+     * @return formatted time string.
+     * */
+    private String formatTime(int seconds) {
+        int hours = seconds / 3600;
+        int minutes = (seconds % 3600) / 60;
+        int remainingSeconds = seconds % 60;
+        return String.format("%02d:%02d:%02d", hours, minutes, remainingSeconds);
+    }
+
+    /**
+     * Stops the timer.
+     */
+    private void stopTimer() {
+        if (timer != null) {
+            timer.stop();
+        }
     }
 
     /**
@@ -116,6 +163,11 @@ public class GameController implements Initializable {
 
             // update score
             gameScore.setText("score: " + currentScore);
+
+            // game ended
+            if(nextCard == null) {
+                timer.stop();
+            }
         }
     }
 
