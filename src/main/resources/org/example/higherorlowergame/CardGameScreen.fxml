@@ -56,6 +56,11 @@
                   <Image url="@../../../Playing%20Cards/card%20back%20orange.png" />
                </image>
             </ImageView>
+            <Text fx:id="status" layoutX="257.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Is the next card higher or lower than the card below?" textAlignment="CENTER" wrappingWidth="766.60400390625">
+               <font>
+                  <Font size="25.0" />
+               </font>
+            </Text>
          </children>
       </AnchorPane>
    </center>
