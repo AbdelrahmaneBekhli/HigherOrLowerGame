@@ -26,7 +26,6 @@ public class Card {
         this.rank = rank;
         this.suit = suit;
         this.label = label;
-        System.out.println(imagePath);
         this.imagePath = new Image(imagePath);
     }
 
