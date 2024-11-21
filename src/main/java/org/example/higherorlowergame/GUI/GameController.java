@@ -24,6 +24,9 @@ public class GameController implements Initializable {
     private Text gameTimer;
 
     @FXML
+    private Text status;
+
+    @FXML
     private Button higherButton;
 
     @FXML
@@ -64,29 +67,40 @@ public class GameController implements Initializable {
      */
     @FXML
     void triggerHigher(ActionEvent event) {
-        if(currentCard.getRank() <= nextCard.getRank()) {
-            correctAnswer();
-            } else {
-                System.out.println("incorrect answer!");
-            }
-        }
+        checkAnswer(currentCard.getRank() <= nextCard.getRank());
+    }
 
     /**
      * triggers the action of lower button.
      */
     @FXML
     void triggerLower(ActionEvent event) {
-        if(currentCard.getRank() >= nextCard.getRank()) {
-            correctAnswer();
+        checkAnswer(currentCard.getRank() >= nextCard.getRank());
+    }
+
+    /**
+     * answer handler
+     * @param isCorrect is the answer from user correct.
+     */
+    private void checkAnswer(boolean isCorrect) {
+        if(nextCard.getLabel().equals("Joker")) {
+            correctAnswer(false);
+            status.setText("Push! Joker card, no points awarded.");
+        } else if (currentCard.getRank() == nextCard.getRank()) {
+            correctAnswer(false);
+            status.setText("Push! same rank, no points awarded.");
+        } else if(isCorrect) {
+            correctAnswer(true);
         } else {
-            System.out.println("incorrect answer!");
+            status.setText("Incorrect answer!");
         }
     }
 
     /**
      * updates the cards to the relevant positions.
      */
-    private void correctAnswer() {
+    private void correctAnswer(boolean incrementPoints) {
+        status.setText("Correct!");
         previousCardImg.setImage(currentCard.getImagePath());
         // reveal the guessed card
         currentCard = nextCard;
@@ -94,6 +108,15 @@ public class GameController implements Initializable {
         // set the next card
         nextCard = deck.getNextCard();
 
+        if (incrementPoints) {
+            // extract the numerical part of the score string
+            String score = gameScore.getText();
+            int currentScore = Integer.parseInt(score.split(": ")[1]);
+            currentScore += 5;
+
+            // update score
+            gameScore.setText("score: " + currentScore);
+        }
     }
 
 }
