@@ -60,6 +60,7 @@ public class Deck {
      */
     public void shuffle(){
         Collections.shuffle(deck);
+        pointer = 0;
     }
 
     /**
