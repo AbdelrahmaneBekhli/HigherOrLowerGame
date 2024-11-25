@@ -140,6 +140,14 @@ public class GameController implements Initializable {
             correctAnswer(true);
         } else {
             status.setText("Incorrect answer!");
+
+            // extract the numerical part of the score string
+            String score = gameScore.getText();
+            int currentScore = Integer.parseInt(score.split(": ")[1]);
+            currentScore -= 2;
+
+            // update score
+            gameScore.setText("score: " + currentScore);
         }
     }
 
