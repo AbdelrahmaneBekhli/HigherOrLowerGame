@@ -131,6 +131,8 @@ public class GameController implements Initializable {
         if(nextCard.getLabel().equals("Joker")) {
             correctAnswer(false);
             status.setText("Push! Joker card, no points awarded.");
+        } else if(currentCard.getLabel().equals("Joker")) {
+                correctAnswer(true);
         } else if (currentCard.getRank() == nextCard.getRank()) {
             correctAnswer(false);
             status.setText("Push! same rank, no points awarded.");
