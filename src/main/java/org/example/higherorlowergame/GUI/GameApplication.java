@@ -21,7 +21,9 @@ public class GameApplication extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("/org/example/higherorlowergame/CardGameScreen.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
         String css = Objects.requireNonNull(getClass().getResource("/org/example/higherorlowergame/stylesheet.css")).toExternalForm();
+        String winCss = Objects.requireNonNull(getClass().getResource("/org/example/higherorlowergame/winStylesheet.css")).toExternalForm();
         scene.getStylesheets().add(css);
+        scene.getStylesheets().add(winCss);
         stage.setTitle("Higher or Lower Game!");
         stage.setScene(scene);
         stage.show();
