@@ -37,7 +37,7 @@
       </AnchorPane>
    </bottom>
    <center>
-      <AnchorPane prefHeight="200.0" prefWidth="200.0" styleClass=".anchor-pane" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #ebbd5e;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="higherButton" layoutX="679.0" layoutY="466.0" mnemonicParsing="false" onAction="#triggerHigher" prefHeight="43.0" prefWidth="109.0" text="Higher" />
             <Button fx:id="lowerButton" layoutX="474.0" layoutY="466.0" mnemonicParsing="false" onAction="#triggerLower" prefHeight="43.0" prefWidth="109.0" text="Lower" />
