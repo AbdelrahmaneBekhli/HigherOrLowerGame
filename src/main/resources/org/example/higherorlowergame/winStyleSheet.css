@@ -1,0 +1,46 @@
+.win-screen {
+    -fx-background-color: #b2ebf2; /* Soft teal background */
+    -fx-background-radius: 15px; /* Rounded corners */
+    -fx-border-color: #4caf50; /* Green border */
+    -fx-border-width: 3px;
+    -fx-border-radius: 15px;
+    -fx-padding: 20px;
+}
+
+/* Center pane background styling */
+.anchor-pane {
+    -fx-border-color: #4caf50; /* Green border */
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-padding: 20px;
+}
+
+/* Buttons */
+.win-screen-button {
+    -fx-background-color: linear-gradient(to bottom, #a5d6a7, #81c784); /* Green gradient */
+    -fx-text-fill: white;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 15px;
+    -fx-border-color: #66bb6a; /* Green border */
+    -fx-border-radius: 15px;
+    -fx-border-width: 2px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 4, 0.3, 1, 1);
+}
+
+.win-screen-button:hover {
+    -fx-background-color: linear-gradient(to bottom, #c8e6c9, #66bb6a); /* Lighter green for hover */
+}
+
+.win-screen-button:pressed {
+    -fx-background-color: linear-gradient(to bottom, #66bb6a, #43a047); /* Slightly darker green for pressed */
+}
+
+.win-screen-button:focused {
+    -fx-focus-color: transparent;
+    -fx-faint-focus-color: transparent;
+}
+/* Add a glow effect for active elements */
+.button:focused {
+    -fx-effect: dropshadow(gaussian, rgba(76, 175, 80, 0.8), 5, 0.8, 0, 0); /* Green glow effect */
+}
