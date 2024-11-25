@@ -1,0 +1,71 @@
+/* General styling for the entire application */
+.root {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #f2e9db; /* Soft cream background */
+}
+
+/* Text styling */
+.text {
+    -fx-fill: #4a4a4a; /* Dark gray text */
+    -fx-font-weight: bold;
+
+}
+
+/* Styling for the game buttons */
+#higherButton, #lowerButton {
+    -fx-background-color: linear-gradient(to bottom, #ff9800, #f57c00); /* Gradient orange */
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-background-radius: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.3), 5, 0.5, 0, 1);
+    -fx-padding: 10 20;
+    -fx-border-color: #bf360c;
+    -fx-border-radius: 10px;
+    -fx-border-width: 2px;
+}
+
+#higherButton:hover, #lowerButton:hover {
+    -fx-background-color: linear-gradient(to bottom, #ffa726, #f57c00); /* Slightly lighter gradient */
+    -fx-cursor: hand; /* Pointer cursor */
+}
+
+#higherButton:pressed, #lowerButton:pressed {
+    -fx-background-color: linear-gradient(to bottom, #e65100, #bf360c); /* Deep orange */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.8, 0, 1);
+}
+
+/* Styling for the score and timer text */
+#gameScore, #gameTimer {
+    -fx-fill: #4a4a4a;
+    -fx-font-size: 25px;
+    -fx-font-weight: bold;
+}
+
+/* Styling for the card images */
+.image-view {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.5, 0, 1);
+    -fx-padding: 10;
+}
+
+/* Status message styling */
+#status {
+    -fx-fill: #333333; /* Darker gray text */
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-alignment: center;
+}
+
+/* Center pane background styling */
+.anchor-pane {
+    -fx-background-color: #ffe082; /* Warm yellow background */
+    -fx-border-color: #fbc02d;
+    -fx-border-width: 4px;
+    -fx-border-radius: 5px;
+    -fx-padding: 20px;
+}
+
+/* Add a glow effect for active elements */
+.button:focused {
+    -fx-effect: dropshadow(gaussian, rgba(255,215,0,0.8), 15, 0.8, 0, 0);
+}
