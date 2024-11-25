@@ -7,6 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
 import org.example.higherorlowergame.Card;
@@ -21,28 +22,13 @@ import java.util.ResourceBundle;
 public class GameController implements Initializable {
 
     @FXML
-    private Text gameScore;
+    private Text gameScore, gameTimer, status, timeTaken, finalScore;
 
     @FXML
-    private Text gameTimer;
+    private ImageView previousCardImg, currentCardImg, nextCardImg;
 
     @FXML
-    private Text status;
-
-    @FXML
-    private Button higherButton;
-
-    @FXML
-    private Button lowerButton;
-
-    @FXML
-    private ImageView nextCardImg;
-
-    @FXML
-    private ImageView previousCardImg;
-
-    @FXML
-    private ImageView currentCardImg;
+    private Pane winScreen;
 
     private final Deck deck = new Deck(true);
     private Card currentCard;
@@ -50,12 +36,19 @@ public class GameController implements Initializable {
 
     private int elapsedTime = 0; // Elapsed time in seconds
     private Timeline timer; // Timer for updating the game time
+    private int counter = 0;
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        startGame();
+    }
 
     /**
      * initialize the screen to default values.
      */
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    private void startGame(){
+        winScreen.setVisible(false);
+        elapsedTime = 0;
         deck.shuffle();
 
         // get the starting card
@@ -67,6 +60,7 @@ public class GameController implements Initializable {
 
         previousCardImg.setImage(null);
 
+        gameTimer.setText("Time: 00:00:00" );
         startTimer();
     }
 
@@ -114,7 +108,9 @@ public class GameController implements Initializable {
      */
     @FXML
     void triggerHigher(ActionEvent event) {
-        checkAnswer(currentCard.getRank() <= nextCard.getRank());
+        if(counter < 52) {
+            checkAnswer(currentCard.getRank() <= nextCard.getRank());
+        }
     }
 
     /**
@@ -122,7 +118,9 @@ public class GameController implements Initializable {
      */
     @FXML
     void triggerLower(ActionEvent event) {
-        checkAnswer(currentCard.getRank() >= nextCard.getRank());
+        if(counter < 52) {
+            checkAnswer(currentCard.getRank() >= nextCard.getRank());
+        }
     }
 
     /**
@@ -145,30 +143,102 @@ public class GameController implements Initializable {
 
     /**
      * updates the cards to the relevant positions.
+     * @param incrementPoints whether to add points or not.
      */
     private void correctAnswer(boolean incrementPoints) {
-        status.setText("Correct!");
-        previousCardImg.setImage(currentCard.getImagePath());
-        // reveal the guessed card
-        currentCard = nextCard;
-        currentCardImg.setImage(currentCard.getImagePath());
-        // set the next card
-        nextCard = deck.getNextCard();
+        if (counter < 52) {
+            status.setText("Correct!");
+            previousCardImg.setImage(currentCard.getImagePath());
+            // reveal the guessed card
+            currentCard = nextCard;
+            currentCardImg.setImage(currentCard.getImagePath());
+            // set the next card
+            nextCard = deck.getNextCard();
 
-        if (incrementPoints) {
-            // extract the numerical part of the score string
-            String score = gameScore.getText();
-            int currentScore = Integer.parseInt(score.split(": ")[1]);
-            currentScore += 5;
+            if (incrementPoints) {
+                // extract the numerical part of the score string
+                String score = gameScore.getText();
+                int currentScore = Integer.parseInt(score.split(": ")[1]);
+                currentScore += 5;
 
-            // update score
-            gameScore.setText("score: " + currentScore);
+                // update score
+                gameScore.setText("score: " + currentScore);
 
-            // game ended
-            if(nextCard == null) {
-                timer.stop();
+                // game ended
+                if (counter == 51) {
+                    stopTimer();
+                    winScreen.setVisible(true);
+                    setWinDetails();
+                }
+            }
+            counter++;
+        }
+    }
+
+    /**
+     * set all details on the winning screen.
+     */
+    public void setWinDetails(){
+        String score = gameScore.getText();
+        int currentScore = Integer.parseInt(score.split(": ")[1]);
+        finalScore.setText("score: " + currentScore);
+
+        timeTaken.setText("Time: " + finalFormatTime(elapsedTime));
+    }
+
+    /**
+     * converts the time into x hours y minutes z seconds format.
+     * @param seconds time passed in seconds.
+     */
+    private String finalFormatTime(int seconds) {
+        int hours = seconds / 3600; // 3600 seconds in an hour
+        int minutes = (seconds % 3600) / 60; // Get remaining minutes after hours
+        int remainingSeconds = seconds % 60; // Get the remaining seconds after minutes
+
+        StringBuilder timeString = new StringBuilder();
+
+        if (hours > 0) {
+            timeString.append(hours).append(" hour");
+            if (hours > 1) {
+                timeString.append("s");
+            }
+            timeString.append(" ");
+        }
+
+        if (minutes > 0 || hours > 0) { // Only show minutes if hours are shown or minutes are > 0
+            timeString.append(minutes).append(" minute");
+            if (minutes > 1) {
+                timeString.append("s");
+            }
+            timeString.append(" ");
+        }
+
+        if (remainingSeconds > 0 || hours == 0 && minutes == 0) { // If there are seconds or no hours/minutes, show seconds
+            timeString.append(remainingSeconds).append(" second");
+            if (remainingSeconds > 1) {
+                timeString.append("s");
             }
         }
+
+        return timeString.toString();
+    }
+
+    /**
+     * triggers the action of play again button.
+     */
+    @FXML
+    void triggerPlayAgain(ActionEvent event) {
+        startGame();
+        winScreen.setVisible(false);
+        gameScore.setText("score: " + 0);
+        counter = 0;
+    }
+    /**
+     * triggers the action of exit button.
+     */
+    @FXML
+    void triggerExit(ActionEvent event) {
+        System.exit(0);
     }
 
 }
