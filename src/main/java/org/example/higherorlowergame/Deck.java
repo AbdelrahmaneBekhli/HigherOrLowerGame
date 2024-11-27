@@ -64,7 +64,7 @@ public class Deck {
     }
 
     /**
-     * @return returns the next card to be accessed.
+     * @return the next card to be accessed.
      */
     public Card getNextCard(){
         if(pointer > deck.size() - 1){
@@ -74,5 +74,12 @@ public class Deck {
             pointer++;
             return deck.get(tempPointer);
         }
+    }
+
+    /**
+     * @return how many cards are in the deck.
+     */
+    public int getSize() {
+        return deck.size();
     }
 }
