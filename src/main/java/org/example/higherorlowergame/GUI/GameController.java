@@ -5,7 +5,6 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -30,13 +29,15 @@ public class GameController implements Initializable {
     @FXML
     private Pane winScreen;
 
-    private final Deck deck = new Deck(true);
+    private Deck deck;
     private Card currentCard;
     private Card nextCard;
+    int maxCards;
 
     private int elapsedTime = 0; // Elapsed time in seconds
     private Timeline timer; // Timer for updating the game time
     private int counter = 0;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -49,7 +50,11 @@ public class GameController implements Initializable {
     private void startGame(){
         winScreen.setVisible(false);
         elapsedTime = 0;
+
+        deck = new Deck(MenuController.isJoker());
         deck.shuffle();
+
+        maxCards = deck.getSize();
 
         // get the starting card
         currentCard = deck.getNextCard();
@@ -108,7 +113,8 @@ public class GameController implements Initializable {
      */
     @FXML
     void triggerHigher(ActionEvent event) {
-        if(counter < 52) {
+        System.out.println(counter);
+        if(counter < maxCards) {
             checkAnswer(currentCard.getRank() <= nextCard.getRank());
         }
     }
@@ -118,7 +124,8 @@ public class GameController implements Initializable {
      */
     @FXML
     void triggerLower(ActionEvent event) {
-        if(counter < 52) {
+        System.out.println(counter);
+        if(counter < maxCards) {
             checkAnswer(currentCard.getRank() >= nextCard.getRank());
         }
     }
@@ -156,7 +163,7 @@ public class GameController implements Initializable {
      * @param incrementPoints whether to add points or not.
      */
     private void correctAnswer(boolean incrementPoints) {
-        if (counter < 52) {
+        if (counter < maxCards) {
             status.setText("Correct!");
             previousCardImg.setImage(currentCard.getImagePath());
             // reveal the guessed card
@@ -175,7 +182,7 @@ public class GameController implements Initializable {
                 gameScore.setText("score: " + currentScore);
 
                 // game ended
-                if (counter == 51) {
+                if (counter == maxCards - 2) {
                     stopTimer();
                     winScreen.setVisible(true);
                     setWinDetails();
@@ -197,8 +204,9 @@ public class GameController implements Initializable {
     }
 
     /**
-     * converts the time into x hours y minutes z seconds format.
+     * converts the time from seconds into x hours y minutes z seconds format.
      * @param seconds time passed in seconds.
+     * @return time in x hours y minutes z seconds format.
      */
     private String finalFormatTime(int seconds) {
         int hours = seconds / 3600; // 3600 seconds in an hour
