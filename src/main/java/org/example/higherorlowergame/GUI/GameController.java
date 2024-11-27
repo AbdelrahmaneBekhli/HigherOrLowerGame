@@ -113,7 +113,6 @@ public class GameController implements Initializable {
      */
     @FXML
     void triggerHigher(ActionEvent event) {
-        System.out.println(counter);
         if(counter < maxCards) {
             checkAnswer(currentCard.getRank() <= nextCard.getRank());
         }
@@ -124,7 +123,6 @@ public class GameController implements Initializable {
      */
     @FXML
     void triggerLower(ActionEvent event) {
-        System.out.println(counter);
         if(counter < maxCards) {
             checkAnswer(currentCard.getRank() >= nextCard.getRank());
         }
