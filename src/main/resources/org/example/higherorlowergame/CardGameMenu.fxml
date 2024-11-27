@@ -25,18 +25,18 @@
    <center>
       <AnchorPane prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: #87CEEB;" BorderPane.alignment="CENTER">
          <children>
-            <Text layoutX="375.0" layoutY="120.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ready to play higher or lower card game?" textAlignment="CENTER" wrappingWidth="591.60400390625">
+            <Text layoutX="344.0" layoutY="119.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ready to play higher or lower card game?" textAlignment="CENTER" wrappingWidth="591.60400390625">
                <font>
                   <Font name="Arial Bold Italic" size="33.0" />
                </font>
             </Text>
-            <Button layoutX="546.0" layoutY="332.0" mnemonicParsing="false" onAction="#toggleStart" prefHeight="46.0" prefWidth="140.0" text="Start game" />
-            <JFXToggleButton fx:id="toggleSwitch" layoutX="504.0" layoutY="226.0" onAction="#handleToggle" prefHeight="85.0" prefWidth="204.0" size="15.0" text="include joker">
+            <Button layoutX="547.0" layoutY="333.0" mnemonicParsing="false" onAction="#toggleStart" prefHeight="46.0" prefWidth="140.0" text="Start game" />
+            <JFXToggleButton fx:id="toggleSwitch" layoutX="514.0" layoutY="228.0" onAction="#handleToggle" prefHeight="85.0" prefWidth="204.0" size="15.0" text="Include joker">
                <font>
                   <Font name="Arial Bold" size="17.0" />
                </font>
             </JFXToggleButton>
-            <Button layoutX="562.0" layoutY="418.0" mnemonicParsing="false" onAction="#toggleExit" prefHeight="46.0" prefWidth="109.0" text="Exit" />
+            <Button layoutX="563.0" layoutY="418.0" mnemonicParsing="false" onAction="#toggleExit" prefHeight="46.0" prefWidth="109.0" text="Exit" />
          </children>
       </AnchorPane>
    </center>
