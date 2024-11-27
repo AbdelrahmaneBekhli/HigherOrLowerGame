@@ -5,6 +5,7 @@ import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.text.Text;
@@ -29,6 +30,9 @@ public class GameController implements Initializable {
     @FXML
     private Pane winScreen;
 
+    @FXML
+    private ToggleButton toggleSwitch;
+
     private Deck deck;
     private Card currentCard;
     private Card nextCard;
@@ -37,6 +41,8 @@ public class GameController implements Initializable {
     private int elapsedTime = 0; // Elapsed time in seconds
     private Timeline timer; // Timer for updating the game time
     private int counter = 0;
+    private boolean initialGame = true; // is it the first round
+    private boolean joker;
 
 
     @Override
@@ -51,7 +57,16 @@ public class GameController implements Initializable {
         winScreen.setVisible(false);
         elapsedTime = 0;
 
-        deck = new Deck(MenuController.isJoker());
+
+        if(initialGame){
+            joker = MenuController.isJoker();
+        } else{
+            joker = toggleSwitch.isSelected();
+        }
+
+        toggleSwitch.setSelected(joker); // save choice for next round
+
+        deck = new Deck(joker);
         deck.shuffle();
 
         maxCards = deck.getSize();
@@ -245,6 +260,7 @@ public class GameController implements Initializable {
     @FXML
     void triggerPlayAgain(ActionEvent event) {
         startGame();
+        initialGame = false;
         winScreen.setVisible(false);
         gameScore.setText("score: " + 0);
         counter = 0;
@@ -255,6 +271,14 @@ public class GameController implements Initializable {
     @FXML
     void triggerExit(ActionEvent event) {
         System.exit(0);
+    }
+
+    /**
+     * sets whether a joker is needed for the round.
+     */
+    @FXML
+    void handleToggle() {
+        joker = toggleSwitch.isSelected();
     }
 
 }
