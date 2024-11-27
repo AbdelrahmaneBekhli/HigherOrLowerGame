@@ -1,0 +1,111 @@
+/* Global Font and Background */
+.root {
+    -fx-font-family: 'Arial', sans-serif;
+    -fx-background-color: #f0f4f8;
+}
+
+/* Top Anchor Pane (Header) */
+.top-pane {
+    -fx-background-color: #fff0db;
+    -fx-background-radius: 0 0 20 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0, 0, 2);
+}
+
+.top-pane .text {
+    -fx-font-family: 'Arial Bold';
+    -fx-font-size: 31px;
+    -fx-fill: #2c3e50;
+}
+
+/* Center Pane */
+.center-pane {
+    -fx-background-color: linear-gradient(to bottom, #87CEEB, #E0F6FF);
+}
+
+.center-pane .text {
+    -fx-font-size: 25px;
+    -fx-fill: #34495e;
+    -fx-text-alignment: center;
+}
+
+/* Button Global Styles */
+.button {
+    -fx-background-color: #FFFFFF;  /* White background */
+    -fx-text-fill: #2C3E50;  /* Dark text color */
+    -fx-background-radius: 20;
+    -fx-border-radius: 20;
+    -fx-border-color: #3498DB;  /* Soft blue border */
+    -fx-border-width: 2px;
+    -fx-font-size: 16px;
+    -fx-padding: 10 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+    -fx-cursor: hand;
+    -fx-font-weight: bold;
+    -fx-transition: all 0.3s ease;
+}
+
+/* Start Game Button */
+.button.start-game {
+    -fx-background-color: #3498DB;  /* Bright blue for start */
+    -fx-text-fill: white;
+}
+
+/* Exit Button */
+.button.exit-button {
+    -fx-border-color: #E74C3C;  /* Red border for exit */
+    -fx-text-fill: #E74C3C;  /* Red text */
+}
+
+/* Hover Effects */
+.button:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);
+    -fx-translate-y: -2px;
+}
+
+.button.start-game:hover {
+    -fx-background-color: #2980B9;  /* Darker blue on hover */
+}
+
+.button.exit-button:hover {
+    -fx-background-color: #E74C3C;
+    -fx-text-fill: white;
+}
+
+/* Pressed/Active State */
+.button:pressed {
+    -fx-effect: none;
+    -fx-translate-y: 1px;
+}
+
+/* JFXToggleButton Styling */
+.jfx-toggle-button {
+    -jfx-toggle-color: #2980B9;  /* Deep blue for toggle state */
+    -jfx-untoggle-color: #BDC3C7;  /* Soft gray for untoggled state */
+}
+
+.jfx-toggle-button .jfx-toggle-button-circle {
+    -fx-background-color: white;
+    -fx-background-radius: 20;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 5, 0, 0, 2);
+}
+
+.jfx-toggle-button .jfx-toggle-button-circle:hover {
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.2), 10, 0, 0, 3);
+    -fx-translate-y: -2px;
+}
+
+.jfx-toggle-button .jfx-toggle-button-circle:pressed {
+    -fx-effect: none;
+    -fx-translate-y: 1px;
+}
+
+.jfx-toggle-button .text {
+    -fx-font-size: 15px;
+    -fx-fill: #34495e;  /* Slightly softer text color */
+}
+
+.jfx-toggle-button .text {
+    -fx-font-family: 'Segoe UI', 'Arial';  /* Modern, clean font with a fallback */
+    -fx-fill: #2c3e50;
+    -fx-font-weight: bold;
+}
