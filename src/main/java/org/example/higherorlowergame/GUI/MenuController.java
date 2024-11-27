@@ -16,6 +16,9 @@ public class MenuController {
     @FXML
     private ToggleButton toggleSwitch;
 
+    /**
+     * sets whether a joker is needed for the round.
+     */
     @FXML
     private void handleToggle() {
         joker = toggleSwitch.isSelected();
