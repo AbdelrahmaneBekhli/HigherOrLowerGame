@@ -23,10 +23,10 @@ public class GameApplication extends Application {
     public void start(Stage stage) throws IOException {
         GameApplication.stage = stage;
 
-        FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("/org/example/higherorlowergame/CardGameMenu.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(GameApplication.class.getResource("/org/example/higherorlowergame/fxmlFiles/CardGameMenu.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 1280, 720);
 
-        String menuCss = Objects.requireNonNull(getClass().getResource("/org/example/higherorlowergame/menuStylesheet.css")).toExternalForm();
+        String menuCss = Objects.requireNonNull(getClass().getResource("/org/example/higherorlowergame/cssFiles/menuStylesheet.css")).toExternalForm();
         scene.getStylesheets().add(menuCss);
 
         stage.setTitle("Higher or Lower Game!");
@@ -39,10 +39,10 @@ public class GameApplication extends Application {
      * @throws IOException if there is an error loading the FXML or CSS files.
      */
     public static void setGamePage() throws IOException {
-        Parent loginFxml = new FXMLLoader(GameApplication.class.getResource("/org/example/higherorlowergame/CardGameScreen.fxml")).load();
+        Parent loginFxml = new FXMLLoader(GameApplication.class.getResource("/org/example/higherorlowergame/fxmlFiles/CardGameScreen.fxml")).load();
         Scene loginScene = new Scene(loginFxml, 1280, 720);
-        loginScene.getStylesheets().add(Objects.requireNonNull(GameApplication.class.getResource("/org/example/higherorlowergame/stylesheet.css")).toExternalForm());
-        loginScene.getStylesheets().add(Objects.requireNonNull(GameApplication.class.getResource("/org/example/higherorlowergame/winStylesheet.css")).toExternalForm());
+        loginScene.getStylesheets().add(Objects.requireNonNull(GameApplication.class.getResource("/org/example/higherorlowergame/cssFiles/stylesheet.css")).toExternalForm());
+        loginScene.getStylesheets().add(Objects.requireNonNull(GameApplication.class.getResource("/org/example/higherorlowergame/cssFiles/winStylesheet.css")).toExternalForm());
         stage.setScene(loginScene);
     }
 
