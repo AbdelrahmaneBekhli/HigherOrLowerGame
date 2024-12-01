@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"m":"org.example.higherorlowergame","l":"org.example.higherorlowergame"},{"m":"org.example.higherorlowergame","l":"org.example.higherorlowergame.GUI"}];updateSearchResults();
