@@ -3,7 +3,7 @@ package org.example.higherorlowergame;
 import javafx.scene.image.Image;
 
 /**
- * @author      abdelrahmane, bekhli, abdelrahmane001@gmail.com
+ * @author      Abdelrahmane, Bekhli, abdelrahmane001@gmail.com
  */
 public class Card {
 
@@ -16,7 +16,9 @@ public class Card {
     private final Image imagePath;
 
     /**
-     * Constructor for the card
+     * Constructor for the card.
+     * front cards pictures reference: <a href="https://opengameart.org/content/playing-cards-vector-png">Front of cards</a>
+     * back cards picture reference : <a href="https://opengameart.org/content/colorful-poker-card-back">Back of cards</a>
      * @param rank rank of the card (i.e. 1 - 15).
      * @param suit suit of the card (i.e. Hearts, Spades, Diamonds, Clubs).
      * @param label label (can be number or string e.g. 3 or Queen).
