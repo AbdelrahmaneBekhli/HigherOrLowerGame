@@ -41,9 +41,8 @@ HOLCG (Higher Or Lower Card Game) is an exciting strategic card prediction game 
 ## 💻 Installation
 
 ### 🖥️ Option 1: Quick Play (JAR File)
-```bash
-wget https://github.com/AbdelrahmaneBekhli/HigherOrLowerGame/raw/refs/heads/master/out/artifacts/HigherOrLowerGame_jar/HigherOrLowerGame.jar
-```
+[Download HigherOrLowerGame.jar](https://github.com/AbdelrahmaneBekhli/HigherOrLowerGame/raw/refs/heads/master/out/artifacts/HigherOrLowerGame_jar/HigherOrLowerGame.jar)
+
 
 ### 💾 Option 2: Development Setup
 ```bash
