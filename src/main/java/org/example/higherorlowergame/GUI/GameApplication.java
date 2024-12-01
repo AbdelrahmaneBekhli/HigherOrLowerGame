@@ -33,6 +33,7 @@ public class GameApplication extends Application {
 
         stage.setTitle("Higher or Lower Game!");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 
