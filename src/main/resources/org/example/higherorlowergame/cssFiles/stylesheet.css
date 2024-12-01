@@ -12,7 +12,7 @@
 }
 
 /* Styling for the game buttons */
-#higherButton, #lowerButton {
+#higherButton, #lowerButton, #endButton {
     -fx-background-color: linear-gradient(to bottom, #ff9800, #f57c00); /* Gradient orange */
     -fx-text-fill: white;
     -fx-font-size: 16px;
@@ -25,12 +25,12 @@
     -fx-border-width: 2px;
 }
 
-#higherButton:hover, #lowerButton:hover {
+#higherButton:hover, #lowerButton:hover, #endButton:hover {
     -fx-background-color: linear-gradient(to bottom, #ffa726, #f57c00); /* Slightly lighter gradient */
     -fx-cursor: hand; /* Pointer cursor */
 }
 
-#higherButton:pressed, #lowerButton:pressed {
+#higherButton:pressed, #lowerButton:pressed, #endButton:pressed {
     -fx-background-color: linear-gradient(to bottom, #e65100, #bf360c); /* Deep orange */
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.5), 10, 0.8, 0, 1);
 }
