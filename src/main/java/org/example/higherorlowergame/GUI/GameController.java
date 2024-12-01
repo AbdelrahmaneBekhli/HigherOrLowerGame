@@ -149,15 +149,16 @@ public class GameController implements Initializable {
      */
     private void checkAnswer(boolean isCorrect) {
         if(nextCard.getLabel().equals("Joker")) {
-            correctAnswer(false);
+            moveNext(false);
             status.setText("Push! Joker card, no points awarded.");
         } else if(currentCard.getLabel().equals("Joker")) {
-                correctAnswer(true);
+            moveNext(true);
         } else if (currentCard.getRank() == nextCard.getRank()) {
-            correctAnswer(false);
+            moveNext(false);
             status.setText("Push! same rank, no points awarded.");
         } else if(isCorrect) {
-            correctAnswer(true);
+            status.setText("Correct!");
+            moveNext(true);
         } else {
             status.setText("Incorrect answer!");
 
@@ -168,6 +169,7 @@ public class GameController implements Initializable {
 
             // update score
             gameScore.setText("score: " + currentScore);
+            moveNext(false);
         }
     }
 
@@ -175,9 +177,8 @@ public class GameController implements Initializable {
      * updates the cards to the relevant positions.
      * @param incrementPoints whether to add points or not.
      */
-    private void correctAnswer(boolean incrementPoints) {
+    private void moveNext(boolean incrementPoints) {
         if (counter < maxCards) {
-            status.setText("Correct!");
             previousCardImg.setImage(currentCard.getImagePath());
             // reveal the guessed card
             currentCard = nextCard;
@@ -196,13 +197,20 @@ public class GameController implements Initializable {
 
                 // game ended
                 if (counter == maxCards - 2) {
-                    stopTimer();
-                    winScreen.setVisible(true);
-                    setWinDetails();
+                    endRound();
                 }
             }
             counter++;
         }
+    }
+
+    /**
+     * ends the current round and calls the end round screen.
+     */
+    private void endRound(){
+        stopTimer();
+        winScreen.setVisible(true);
+        setWinDetails();
     }
 
     /**
@@ -279,6 +287,14 @@ public class GameController implements Initializable {
     @FXML
     void handleToggle() {
         joker = toggleSwitch.isSelected();
+    }
+
+    /**
+     * triggers end round method.
+     */
+    @FXML
+    void triggerEndRound(ActionEvent event) {
+        endRound();
     }
 
 }
