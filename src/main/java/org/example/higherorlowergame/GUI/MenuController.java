@@ -2,6 +2,7 @@ package org.example.higherorlowergame.GUI;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ToggleButton;
 
 import java.io.IOException;
@@ -36,8 +37,18 @@ public class MenuController {
      * starts the game.
      */
     @FXML
-    void toggleStart(ActionEvent event) throws IOException {
-        GameApplication.setGamePage();
+    void toggleStart(ActionEvent event) {
+        try {
+            GameApplication.setGamePage();
+        } catch (IOException e) {
+            e.printStackTrace();
+
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Start Game Error");
+            alert.setHeaderText("Cannot start the game");
+            alert.setContentText(e.getMessage());
+            alert.showAndWait();
+        }
     }
 
     /**
